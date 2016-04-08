@@ -7,6 +7,7 @@ const gcd = (p, q) => {
   return gcd(q, r);
 }
 
+//测试
 const main = (argv) => {
   console.log('p:' + argv[0] + ',q:' + argv[1]);
   const result = gcd(argv[0], argv[1]);
