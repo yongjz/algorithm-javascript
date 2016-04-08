@@ -1,7 +1,6 @@
 'use strict';
 
 class Bag {
-  
   constructor(first, N) {
     this.first = first || null;
     this.N = N || 0;
@@ -34,24 +33,24 @@ class Node {
 
 //测试
 const main = (argv) => {
-  var b = new Bag()
-  console.log(b.size());
-  console.log(b.isEmpty());
-  b.add(11);
-  console.log(b.size());
-  console.log(b.isEmpty());
+  var bag = new bagag()
+  console.log(bag.size());
+  console.log(bag.isEmpty());
+  bag.add(11);
+  console.log(bag.size());
+  console.log(bag.isEmpty());
 
-  b.add(22);
-  console.log(b.size());
-  console.log(b.isEmpty());
+  bag.add(22);
+  console.log(bag.size());
+  console.log(bag.isEmpty());
 
-  b.add(33);
-  console.log(b.size());
-  console.log(b.isEmpty());
+  bag.add(33);
+  console.log(bag.size());
+  console.log(bag.isEmpty());
 
-  console.log(b.first.item);
-  console.log(b.first.next.item);
-  console.log(b.first.next.next.item);
+  console.log(bag.first.item);
+  console.log(bag.first.next.item);
+  console.log(bag.first.next.next.item);
 }
 
 if (require.main === module) {
