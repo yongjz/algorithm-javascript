@@ -33,7 +33,7 @@ class Node {
 
 //测试
 const main = (argv) => {
-  var bag = new bagag()
+  var bag = new bag()
   console.log(bag.size());
   console.log(bag.isEmpty());
   bag.add(11);
