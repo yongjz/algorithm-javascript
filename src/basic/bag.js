@@ -5,7 +5,7 @@ class Bag {
     this.first = first || null;
     this.N = N || 0;
   }
-  
+
   isEmpty() {
     return this.first === null;
   }
@@ -22,6 +22,24 @@ class Bag {
     this.N++;
   }
   
+  //遍历器对象
+  [Symbol.iterator]() { return this; }
+  
+  next() {
+    if(this.first !== null) {
+      var value = this.first.item;
+      this.first = this.first.next;
+      return {
+        done: false,
+        value: value
+      }
+    } else {
+      return {
+        done: true
+      }
+    }
+  }
+  
 }
 
 class Node {
@@ -33,24 +51,15 @@ class Node {
 
 //测试
 const main = (argv) => {
-  var bag = new bag()
-  console.log(bag.size());
-  console.log(bag.isEmpty());
+  var bag = new Bag();
   bag.add(11);
-  console.log(bag.size());
-  console.log(bag.isEmpty());
-
+  bag.add([9,8,7]);
   bag.add(22);
-  console.log(bag.size());
-  console.log(bag.isEmpty());
-
+  bag.add({a:213});
   bag.add(33);
-  console.log(bag.size());
-  console.log(bag.isEmpty());
-
-  console.log(bag.first.item);
-  console.log(bag.first.next.item);
-  console.log(bag.first.next.next.item);
+  for (var item of bag){
+    console.log(item);
+  }
 }
 
 if (require.main === module) {
