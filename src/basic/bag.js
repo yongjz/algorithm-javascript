@@ -27,8 +27,7 @@ class Bag {
     var iterator = {
       next: next
     };
-    // 不能直接操作this,否则遍历之后数据被清空,
-    // 正确做法将要遍历的对象进行拷贝之后再进行遍历
+
     var current = this.first;
     function next() {
       if (current !== null) {

@@ -68,12 +68,11 @@ class Node {
 
 var s = new Stack();
 s.push(1);
-s.push(2);
-s.push(3);
+s.push([5,6,7]);
+s.push({a: 'hello'});
 
 for (var item of s) {
   console.log(item);
 }
 
 console.log(s.pop());
-console.log(s.size());
