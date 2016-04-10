@@ -1,35 +1,44 @@
 'use strict';
 
-class Bag {
-  constructor(first, N) {
-    this.first = first || null;
-    this.N = N || 0;
+//链表方式实现
+class Stack {
+  constructor() {
+    this.first = null;
+    this.N = 0;
   }
 
-  isEmpty() {
-    return this.first === null;
-  }
-  
-  size() {
-    return this.N;
-  }
-  
-  add(item) {
+  //进栈
+  push(item) {
     var oldfirst = this.first;
     this.first = new Node();
     this.first.item = item;
     this.first.next = oldfirst;
     this.N++;
   }
-  
-  //遍历器对象
+
+  //出栈
+  pop() {
+    var item = this.first.item;
+    this.first = this.first.next;
+    this.N--;
+    return item;
+  }
+
+  isEmpty() {
+    return this.first === null;
+  }
+
+  size() {
+    return this.N;
+  }
+
   [Symbol.iterator]() {
     var iterator = {
       next: next
     };
-    // 不能直接操作this,否则遍历之后数据被清空,
-    // 正确做法将要遍历的对象进行拷贝之后再进行遍历
+
     var current = this.first;
+
     function next() {
       if (current !== null) {
         var value = current.item;
@@ -44,9 +53,9 @@ class Bag {
         }
       }
     }
+    
     return iterator;
   }
-  
 }
 
 class Node {
@@ -56,22 +65,15 @@ class Node {
   }
 }
 
-//测试
-const main = (argv) => {
-  var bag = new Bag();
-  bag.add(11);
-  bag.add([9,8,7]);
-  bag.add(22);
-  bag.add({a:213});
-  bag.add(33);
-  for (var item of bag){
-    console.log(item);
-  }
-  console.log(bag.first);
+
+var s = new Stack();
+s.push(1);
+s.push(2);
+s.push(3);
+
+for (var item of s) {
+  console.log(item);
 }
 
-if (require.main === module) {
-  main();
-}
-
-exports.Bag = Bag;
+console.log(s.pop());
+console.log(s.size());
