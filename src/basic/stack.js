@@ -65,7 +65,6 @@ class Node {
   }
 }
 
-
 const main = () => {
   var s = new Stack();
   s.push(1);
