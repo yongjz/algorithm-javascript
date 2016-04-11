@@ -9,11 +9,11 @@ class Bag {
   isEmpty() {
     return this.first === null;
   }
-  
+
   size() {
     return this.N;
   }
-  
+
   add(item) {
     var oldfirst = this.first;
     this.first = new Node();
@@ -21,7 +21,7 @@ class Bag {
     this.first.next = oldfirst;
     this.N++;
   }
-  
+
   //遍历器对象
   [Symbol.iterator]() {
     var iterator = {
@@ -45,7 +45,7 @@ class Bag {
     }
     return iterator;
   }
-  
+
 }
 
 class Node {
@@ -59,11 +59,11 @@ class Node {
 const main = (argv) => {
   var bag = new Bag();
   bag.add(11);
-  bag.add([9,8,7]);
+  bag.add([9, 8, 7]);
   bag.add(22);
-  bag.add({a:213});
+  bag.add({ a: 213 });
   bag.add(33);
-  for (var item of bag){
+  for (var item of bag) {
     console.log(item);
   }
   console.log(bag.first);

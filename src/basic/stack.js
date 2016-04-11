@@ -53,7 +53,7 @@ class Stack {
         }
       }
     }
-    
+
     return iterator;
   }
 }
@@ -66,13 +66,20 @@ class Node {
 }
 
 
-var s = new Stack();
-s.push(1);
-s.push([5,6,7]);
-s.push({a: 'hello'});
+const main = () => {
+  var s = new Stack();
+  s.push(1);
+  s.push([5, 6, 7]);
+  s.push({ a: 'hello' });
 
-for (var item of s) {
-  console.log(item);
+  for (var item of s) {
+    console.log(item);
+  }
+
+  console.log(s.pop());
+}
+if (require.main === module) {
+  main();
 }
 
-console.log(s.pop());
+exports.Stack = Stack;
