@@ -81,4 +81,4 @@ if (require.main === module) {
   main();
 }
 
-exports.Stack = Stack;
+module.exports = Stack;

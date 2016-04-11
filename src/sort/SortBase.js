@@ -21,7 +21,10 @@ class SortBase {
         return false;
     return true;
   }
+  
+  show(arr) {
+    console.log(arr.toString());
+  }
 }
 
 module.exports = SortBase;
-// exports.SortBase = SortBase;

@@ -93,4 +93,4 @@ if (require.main === module) {
   main();
 }
 
-exports.Queue = Queue;
+module.exports = Queue;

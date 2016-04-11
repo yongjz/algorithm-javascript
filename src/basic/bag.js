@@ -73,4 +73,4 @@ if (require.main === module) {
   main();
 }
 
-exports.Bag = Bag;
+module.exports = Bag;

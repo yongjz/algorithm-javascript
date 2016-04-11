@@ -55,4 +55,4 @@ if (require.main === module) {
   main();
 }
 
-exports.ArrayStack = ArrayStack;
+module.exports = ArrayStack;
