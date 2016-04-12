@@ -1,4 +1,5 @@
 'use strict';
+
 const SortBase = require('./SortBase');
 
 class InsertionSort extends SortBase {
