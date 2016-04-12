@@ -26,10 +26,14 @@ class MergeSort extends SortBase {
     }
   }
 
-  // 使用递归, 自顶向下排序
+  // 使用循环, 自底向上排序
   sort(arr) {
-    this.aux = new Array(arr.length);
-    this.mergeSort(arr, 0, arr.length - 1);
+    let N = arr.length;
+    this.aux = new Array(N);
+
+    for (let size = 1; size < N; size *= 2)
+      for (let low = 0; low < N - size; low += size * 2)
+        this.merge(arr, low, low + size - 1, Math.min(low + size * 2 - 1, N - 1));
   }
 
   mergeSort(arr, low, high) {
