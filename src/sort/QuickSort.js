@@ -26,6 +26,8 @@ class QuickSort extends SortBase {
   }
 
   sort(arr) {
+    // 随机打乱要排序的数组顺序
+    this.shuffle(arr);
     this.quickSort(arr, 0, arr.length - 1);
   }
 

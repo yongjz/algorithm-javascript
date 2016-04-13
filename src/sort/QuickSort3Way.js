@@ -8,6 +8,7 @@ class QuickSort3Way extends SortBase {
   }
 
   sort(arr) {
+    this.shuffle(arr);
     this.quickSort3Way(arr, 0, arr.length - 1);
   }
 
