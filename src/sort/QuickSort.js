@@ -25,7 +25,6 @@ class QuickSort extends SortBase {
     return j;
   }
 
-  // 使用递归, 自顶向下排序
   sort(arr) {
     this.quickSort(arr, 0, arr.length - 1);
   }
@@ -34,7 +33,6 @@ class QuickSort extends SortBase {
     if (high <= low)
       return;
     let j = this.partition(arr, low, high);
-    console.log('j='+j);
     this.quickSort(arr, low, j - 1);
     this.quickSort(arr, j + 1, high);
   }
