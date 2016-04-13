@@ -26,8 +26,8 @@ class QuickSort extends SortBase {
   }
 
   sort(arr) {
-    // 随机打乱要排序的数组顺序
-    this.shuffle(arr);
+    // 三取样切分
+    this.median(arr, 0, arr.length - 1);
     this.quickSort(arr, 0, arr.length - 1);
   }
 
@@ -41,9 +41,12 @@ class QuickSort extends SortBase {
 }
 
 const main = () => {
-  //let arr = [7, 3, 12, 1, 5, 10, 23, 30, 6];
+  // let arr = [7, 3, 12, 1, 5, 10, 23, 30, 6];
   let arr = ['S', 'O', 'R', 'T', 'E', 'X', 'A', 'M', 'P', 'L', 'E'];
   let s = new QuickSort();
+  
+  s.median(arr,0,arr.length-1);
+  
   console.log(s.isSorted(arr));
   s.sort(arr);
   s.show(arr);

@@ -39,6 +39,17 @@ class SortBase {
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
+  
+  // 取中位数，将中位数置于数组第一个位置
+  median(arr, low, high) {
+    const mid = low + Math.floor((high - low) / 2);
+    if(arr[low] > arr[high])
+      this.exch(arr, low, high);
+    if(arr[mid] > arr[high])
+      this.exch(arr, mid, high);
+    if(arr[low] < arr[mid])
+      this.exch(arr, low, mid);
+  }
 }
 
 module.exports = SortBase;
