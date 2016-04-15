@@ -1,5 +1,6 @@
 'use strict';
 
+// 利用堆，实现优先队列数据结构
 class MaxPQ {
   constructor(maxN) {
     this.pq = new Array(maxN + 1);
@@ -18,7 +19,7 @@ class MaxPQ {
   delMax() {
     const max = this.pq[1];
     this.exch(1, this.N--);
-    this.pq[this.N + 1] = null;
+    this.pq.splice(this.N + 1, 1);
     this.sink(1);
     return max;
   }
@@ -51,8 +52,8 @@ class MaxPQ {
   sink(k) {
     while (2 * k <= this.N) {
       let j = 2 * k;
-      if(j < this.N && this.less(j, j+1)) j++;
-      if(!this.less(k, j)) break;
+      if (j < this.N && this.less(j, j + 1)) j++;
+      if (!this.less(k, j)) break;
       this.exch(k, j);
       k = j;
     }
@@ -73,8 +74,9 @@ const main = () => {
   m.insert(33);
   console.log(m.pq);
 
-  for(let i = 0;i < 8; i++) {
+  for (let i = 0; i < 8; i++) {
     console.log(m.delMax());
+    console.log(m.pq);
   }
 }
 
