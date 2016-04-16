@@ -7,7 +7,7 @@ class QuickSort extends SortBase {
     super();
   }
 
-  //切分方法
+  // 切分方法
   partition(arr, low, high) {
     let i = low, j = high + 1;
     let v = arr[low];

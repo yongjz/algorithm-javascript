@@ -26,7 +26,7 @@ class SortBase {
     console.log(arr.toString());
   }
   
-    // 随机打乱数组的顺序
+  // 随机打乱数组的顺序
   shuffle(arr) {
     let n = arr.length;
     for (let i = 0; i < n; i++) {
