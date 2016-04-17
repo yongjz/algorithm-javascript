@@ -41,10 +41,21 @@ class SymbolTable {
 
 }
 
-var st = new SymbolTable();
+const main = () => {
+  var st = new SymbolTable();
 
-st.put('a',1);
-st.put('b',2);
-st.put('c',3);
+  st.put('a',1);
+  st.put('b',2);
+  st.put('c',3);
+  
+  console.log(st.get('b'));
+  st.delete('a');
+  
+  console.log(st);
+}
 
-console.log(st);
+if (require.main === module) {
+  main();
+}
+
+module.exports = SymbolTable;
