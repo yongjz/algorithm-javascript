@@ -6,9 +6,9 @@ const binarySearch = (key, arr) => {
   let high = arr.length - 1;
   while (low <= high) {
     let mid = Math.floor(low + (high - low) / 2);
-    if(key < arr[mid])
+    if (key < arr[mid])
       high = mid - 1;
-    else if(key > arr[mid])
+    else if (key > arr[mid])
       low = mid + 1;
     else
       return mid;
@@ -18,7 +18,7 @@ const binarySearch = (key, arr) => {
 
 //测试
 const main = (argv) => {
-  console.log('index:' + binarySearch(9, [1,3,4,6,8,9,9,16,17,28]));
+  console.log('index:' + binarySearch(9, [1, 3, 4, 6, 8, 9, 9, 16, 17, 28]));
 }
 
 if (require.main === module) {
@@ -26,4 +26,3 @@ if (require.main === module) {
 }
 
 exports.binarySearch = binarySearch;
-

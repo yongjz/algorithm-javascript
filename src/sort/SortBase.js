@@ -21,11 +21,11 @@ class SortBase {
         return false;
     return true;
   }
-  
+
   show(arr) {
     console.log(arr.toString());
   }
-  
+
   // 随机打乱数组的顺序
   shuffle(arr) {
     let n = arr.length;
@@ -34,12 +34,12 @@ class SortBase {
       this.exch(arr, i, r);
     }
   }
-  
+
   // 返回一个介于min和max之间的整型随机数
   getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
   }
-  
+
   // 取中位数，将中位数置于数组第一个位置
   median(arr, low, high) {
     const mid = low + Math.floor((high - low) / 2);
