@@ -5,9 +5,10 @@ class BST {
     this.root = null;
   }
 
+  // 获取结点
   get(key) {
     if (key === null)
-      throw new Error('first argument to get() is null')
+      throw new Error('first argument to get() is null');
     return this._get(this.root, key);
   }
 
@@ -21,13 +22,14 @@ class BST {
     else return node.val;
   }
 
+  // 添加新结点
   put(key, val) {
     if (key === null)
-      throw new Error('first argument to put() is null')
-        // if (val === null) {
-        //   this.delete(key);
-        //   return;
-        // }
+      throw new Error('first argument to put() is null');
+    // if (val === null) {
+    //   this.delete(key);
+    //   return;
+    // }
     this.root = this._put(this.root, key, val);
   }
 
@@ -45,6 +47,7 @@ class BST {
     return node;
   }
 
+  // 结点数量
   size() {
     this._size(this.root)
   }
@@ -111,36 +114,64 @@ class BST {
     if (t !== null) return t;
     else return node;
   }
+
+  // 查找排名为k的键
+  select(k) {
+    if (k < 0 || k >= this.size())
+      throw new Error();
+    return this._select(this.root, k).key;
+  }
+
+  _select(node, k) {
+    if (node === null) return null;
+    let t = this._size(node.left);
+    if (t > k) {
+      return this._select(node.left, k);
+    } else if (t < k) {
+      return this._select(node.right, k - t - 1);
+    } else {
+      return node;
+    }
+  }
 }
 
 class Node {
   constructor(key, val, N) {
-    this.key = key || null;
-    this.val = val || null;
+    this.key = key;
+    this.val = val;
     this.N = N || 0;
     this.left = null;
     this.right = null;
   }
 }
 
-var b = new BST();
+const main = () => {
+  var b = new BST();
 
-b.put('s', 0);
-b.put('e', 1);
-b.put('a', 2);
-b.put('r', 3);
-b.put('c', 4);
-b.put('h', 5);
-b.put('e', 6);
-b.put('x', 7);
-b.put('a', 8);
-b.put('m', 9);
-b.put('p', 10);
-b.put('l', 11);
-b.put('e', 12);
+  b.put('s', 0);
+  b.put('e', 1);
+  b.put('a', 2);
+  b.put('r', 3);
+  b.put('c', 4);
+  b.put('h', 5);
+  b.put('e', 6);
+  b.put('x', 7);
+  b.put('a', 8);
+  b.put('m', 9);
+  b.put('p', 10);
+  b.put('l', 11);
+  b.put('e', 12);
 
-console.log(b.min());
-console.log(b.max());
-console.log(b.floor('g'));
-console.log(b.ceiling('g'));
-console.log(b);
+  console.log(b.min());
+  console.log(b.max());
+  console.log(b.floor('g'));
+  console.log(b.ceiling('g'));
+  console.log(b.select(3));
+  console.log(b);
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = BST;
