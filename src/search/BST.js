@@ -133,6 +133,45 @@ class BST {
       return node;
     }
   }
+
+  // 排名, 小于给定key的数量
+  rank(key) {
+    return this._rank(this.root, key);
+  }
+
+  _rank(node, key) {
+    if(node === null) return 0;
+    if(key < node.key)
+      return this._rank(node.left, key);
+    else if (key > node.key)
+      return this._rank(node.right, key) + this._size(node.left) + 1;
+    else
+      return this._size(node.left);
+  }
+
+  // 删除最小键
+  deleteMin() {
+    this.root = this._deleteMin(this.root);
+  }
+
+  _deleteMin(node) {
+    if(node.left === null) return node.right;
+    node.left = this._deleteMin(node.left);
+    node.N = this._size(node.left) + this._size(node.right) + 1;
+    return node;
+  }
+
+  // 删除最大键
+  deleteMax() {
+    this._deleteMax(this.root);
+  }
+
+  _deleteMax(node) {
+    if(node.right === null) return node.left;
+    node.right = this._deleteMax(node.right);
+    node.N = this._size(node.left) + this._size(node.right) + 1;
+    return node;
+  }
 }
 
 class Node {
@@ -161,12 +200,16 @@ const main = () => {
   b.put('p', 10);
   b.put('l', 11);
   b.put('e', 12);
+  b.put('y', 12);
 
   console.log(b.min());
   console.log(b.max());
   console.log(b.floor('g'));
   console.log(b.ceiling('g'));
   console.log(b.select(3));
+  console.log(b.deleteMin());
+  console.log(b.rank('b'));
+  console.log(b.deleteMax());
   console.log(b);
 }
 
