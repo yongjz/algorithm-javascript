@@ -1,4 +1,5 @@
 'use strict';
+const Queue = require('../basic/Queue');
 
 class BST {
   constructor() {
@@ -180,13 +181,13 @@ class BST {
 
   _delete(node, key) {
     if (node === null) return null;
-    if(key < node.key)
+    if (key < node.key)
       node.left = this._delete(node.left, key);
-    else if(key > node.key)
+    else if (key > node.key)
       node.right = this._delete(node.right, key);
     else {
-      if(node.right === null) return node.left;
-      if(node.left === null) return node.right;
+      if (node.right === null) return node.left;
+      if (node.left === null) return node.right;
       let tmp = node;
       node = this._min(node.right);
       node.right = this._deleteMin(tmp.right);
@@ -194,6 +195,42 @@ class BST {
     }
     node.N = this._size(node.left) + this._size(node.right) + 1;
     return node;
+  }
+
+  // 中序遍历结点
+  print() {
+    this._print(this.root);
+  }
+
+  _print(node) {
+    if (node === null) return;
+    this._print(node.left);
+    console.log(node.key);
+    this._print(node.right);
+  }
+
+  // 遍历所有结点
+  keys() {
+    console.log(this.min());
+    console.log(this.max());
+    return this.range(this.min(), this.max());
+  }
+
+  // 给定范围遍历结点
+  range(low, high) {
+    let q = new Queue();
+    this._range(this.root, q, low, high);
+    return q;
+  }
+
+  _range(node, queue, low, high) {
+    if (node === null) return;
+    if (low < node.key)
+      this._range(node.left, queue, low, high);
+    if (low <= node.key && high >= node.key)
+      queue.enqueue(node.key);
+    if (high > node.key)
+      this._range(node.right, queue, low, high);
   }
 }
 
@@ -231,10 +268,13 @@ const main = () => {
   console.log(b.ceiling('g'));
   console.log(b.select(3));
   b.deleteMin();
-  console.log(b.rank('b');
+  console.log(b.rank('b'));
   b.deleteMax();
   b.delete('e');
   console.log(b);
+  b.print();
+  console.log(b.keys());
+  console.log(b.range('f', 't'));
 }
 
 if (require.main === module) {
