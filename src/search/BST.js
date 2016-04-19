@@ -140,8 +140,8 @@ class BST {
   }
 
   _rank(node, key) {
-    if(node === null) return 0;
-    if(key < node.key)
+    if (node === null) return 0;
+    if (key < node.key)
       return this._rank(node.left, key);
     else if (key > node.key)
       return this._rank(node.right, key) + this._size(node.left) + 1;
@@ -155,7 +155,7 @@ class BST {
   }
 
   _deleteMin(node) {
-    if(node.left === null) return node.right;
+    if (node.left === null) return node.right;
     node.left = this._deleteMin(node.left);
     node.N = this._size(node.left) + this._size(node.right) + 1;
     return node;
@@ -167,8 +167,31 @@ class BST {
   }
 
   _deleteMax(node) {
-    if(node.right === null) return node.left;
+    if (node.right === null) return node.left;
     node.right = this._deleteMax(node.right);
+    node.N = this._size(node.left) + this._size(node.right) + 1;
+    return node;
+  }
+
+  // 删除结点
+  delete(key) {
+    this.root = this._delete(this.root, key);
+  }
+
+  _delete(node, key) {
+    if (node === null) return null;
+    if(key < node.key)
+      node.left = this._delete(node.left, key);
+    else if(key > node.key)
+      node.right = this._delete(node.right, key);
+    else {
+      if(node.right === null) return node.left;
+      if(node.left === null) return node.right;
+      let tmp = node;
+      node = this._min(node.right);
+      node.right = this._deleteMin(tmp.right);
+      node.left = tmp.left;
+    }
     node.N = this._size(node.left) + this._size(node.right) + 1;
     return node;
   }
@@ -207,9 +230,10 @@ const main = () => {
   console.log(b.floor('g'));
   console.log(b.ceiling('g'));
   console.log(b.select(3));
-  console.log(b.deleteMin());
-  console.log(b.rank('b'));
-  console.log(b.deleteMax());
+  b.deleteMin();
+  console.log(b.rank('b');
+  b.deleteMax();
+  b.delete('e');
   console.log(b);
 }
 
