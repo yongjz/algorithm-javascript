@@ -28,10 +28,10 @@ class BST {
   put(key, val) {
     if (key === null)
       throw new Error('first argument to put() is null');
-    // if (val === null) {
-    //   this.delete(key);
-    //   return;
-    // }
+    if (val === null) {
+      this.delete(key);
+      return;
+    }
     this.root = this._put(this.root, key, val);
   }
 

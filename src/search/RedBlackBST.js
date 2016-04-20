@@ -20,9 +20,10 @@ class RedBlackBST {
     node.right = x.left;
     x.left = node;
     x.color = node.color;
-    h.color = RED;
+    node.color = RED;
     x.N = node.N;
     node.N = this._size(node.left) + this._size(node.right) + 1;
+    return x;
   }
 
   // 右旋转
@@ -31,9 +32,10 @@ class RedBlackBST {
     node.left = x.right;
     x.right = node;
     x.color = node.color;
-    h.color = RED;
+    node.color = RED;
     x.N = node.N;
     node.N = this._size(node.left) + this._size(node.right) + 1;
+    return x;
   }
 
   // 颜色转换
@@ -73,17 +75,35 @@ class RedBlackBST {
   }
 
   put(key, val) {
-
+    if (key === null)
+      throw new Error('first argument to put() is null');
+    this.root = this._put(this.root, key, val);
+    this.root.color = BLACK;
   }
 
   _put(node, key, val) {
-
+    if (node === null)
+      return new Node(key, val, 1, RED);
+    if (key < node.key)
+      node.left = this._put(node.left, key, val);
+    else if (key > node.key)
+      node.right = this._put(node.right, key, val);
+    else
+      node.val = val;
+    if (this._isRed(node.right) && !this._isRed(node.left))
+      node = this._rotateLeft(node);
+    if (this._isRed(node.left) && this._isRed(node.left.left))
+      node = this._rotateRight(node);
+    if (this._isRed(node.left) && this._isRed(node.right))
+      this._flipColors(node);
+    node.N = this._size(node.left) + this._size(node.right);
+    return node;
   }
 
 }
 
 class Node {
-  constructor(key, val, N， color) {
+  constructor(key, val, N, color) {
     this.key = key;
     this.val = val;
     this.N = N || 0;
@@ -92,5 +112,22 @@ class Node {
     this.right = null;
   }
 }
+
+const main = () => {
+  var b = new RedBlackBST();
+  b.put('s', 0);
+  b.put('e', 1);
+  b.put('a', 2);
+  b.put('r', 3);
+  b.put('c', 4);
+  b.put('h', 5);
+
+  console.log(b);
+}
+
+if (require.main === module) {
+  main();
+}
+
 
 module.exports = RedBlackBST;
