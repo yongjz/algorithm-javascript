@@ -1,6 +1,7 @@
 'use strict';
 const Queue = require('../basic/Queue');
 
+// 二叉查找树
 class BST {
   constructor() {
     this.root = null;

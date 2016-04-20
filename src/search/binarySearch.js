@@ -1,6 +1,6 @@
 'use strict';
 
-//数组arr必须是有序的
+// 二分查找， 数组arr必须是有序的
 const binarySearch = (key, arr) => {
   let low = 0;
   let high = arr.length - 1;
