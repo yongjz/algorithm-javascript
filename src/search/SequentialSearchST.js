@@ -74,14 +74,22 @@ class Node {
   }
 }
 
-var s = new SequentialSearchST();
-s.put('s', 0);
-s.put('e', 1);
-s.put('a', 2);
-s.put('r', 3);
-s.put('c', 4);
-s.put('h', 5);
+const main = () => {
+  var s = new SequentialSearchST();
+  s.put('s', 0);
+  s.put('e', 1);
+  s.put('a', 2);
+  s.put('r', 3);
+  s.put('c', 4);
+  s.put('h', 5);
 
-s.delete('h');
-// s.delete('c');
-console.log(s);
+  s.delete('h');
+  // s.delete('c');
+  console.log(s);
+}
+
+if (require.main === module) {
+  main();
+}
+
+module.exports = SequentialSearchST;
